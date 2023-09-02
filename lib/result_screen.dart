@@ -20,12 +20,19 @@ class ResultScreen extends StatelessWidget {
         },
       );
     }
-
     return summary;
   }
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestion = questions.length;
+    final numCorrectQuestion = summaryData.where(
+      (data) {
+        return data['user_answer'] == data['correct_answer'];
+      },
+    ).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -33,12 +40,14 @@ class ResultScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //Show number of question answered
+            Text(
+              'You answered $numCorrectQuestion out of $numTotalQuestion questions correctly!',
+            ),
             const SizedBox(
               height: 30,
             ),
             QuestionSummary(
-              getSummaryData(),
+              summaryData,
             ),
             const SizedBox(
               height: 30,
