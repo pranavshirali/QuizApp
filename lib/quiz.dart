@@ -25,9 +25,8 @@ class _QuizState extends State<Quiz> {
   void chooseAnswer(String answers) {
     selectedAnswer.add(answers);
 
-    if(selectedAnswer.length == questions.length){
+    if (selectedAnswer.length == questions.length) {
       setState(() {
-        selectedAnswer = [];
         activeScreen = 'result-screen';
       });
     }
@@ -42,9 +41,11 @@ class _QuizState extends State<Quiz> {
         onSelectedAnswer: chooseAnswer,
       );
     }
-    
-    if(activeScreen == 'result-screen'){
-      screenWidget = const ResultScreen();
+
+    if (activeScreen == 'result-screen') {
+      screenWidget = ResultScreen(
+        choosenAnswer: selectedAnswer,
+      );
     }
 
     return MaterialApp(
