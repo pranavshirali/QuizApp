@@ -33,7 +33,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     return SizedBox(
       width: double.infinity,
-      child: Container(
+      child: Container( 
         margin: const EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +42,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             Text(
               currentQuestion.text,
               style: GoogleFonts.lato(
-                color: Color.fromARGB(255, 210, 152, 243),
+                color: const Color.fromARGB(255, 210, 152, 243),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -55,7 +55,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
               (answers) {
                 return AnswerButton(
                   answerText: answers,
-                  onTap: answerQuestion,
+                  onTap: (){
+                    answerQuestion(answers);
+                  },
                 );
               },
             )
